@@ -9,16 +9,16 @@ namespace OmegaBakery.Domain
     internal class Order
     {
         public int Id { get; private set; }
-        public IReadOnlyCollection<LineItem> LineItems { get => _lineItems; }
+        public IReadOnlyCollection<ILineItem> LineItems { get => _lineItems; }
 
-        private List<LineItem> _lineItems;
+        private List<ILineItem> _lineItems;
 
-        public Order(List<LineItem> lineItems)
+        public Order(List<ILineItem> lineItems)
         {
             _lineItems = lineItems;
         }
 
-        public void addLineItem(LineItem lineItem)
+        public void addLineItem(ILineItem lineItem)
         {
             _lineItems.Add(lineItem);
         }

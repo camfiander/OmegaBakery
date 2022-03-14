@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain
 {
-    internal class DiscountedLineItem : LineItem
+    internal class DiscountedLineItem : ILineItem
     {
         private ProductLineItem productLineItem;
 
-        private Discount discount;
+        private IDiscount discount;
 
         public int Count => productLineItem.Count;
 
-        public Product Product => productLineItem.Product;
+        public IProduct Product => productLineItem.Product;
 
-        public DiscountedLineItem(ProductLineItem productLineItem, Discount discount)
+        public double Subtotal => throw new NotImplementedException();
+
+        public DiscountedLineItem(ProductLineItem productLineItem, IDiscount discount)
         {
             this.productLineItem = productLineItem;
             this.discount = discount;

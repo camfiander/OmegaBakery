@@ -8,7 +8,7 @@ namespace OmegaBakery.Domain
 {
     internal class Promotion
     {
-        public Discount Discount { get; set; }
+        public IDiscount Discount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

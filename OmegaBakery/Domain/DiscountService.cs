@@ -9,9 +9,9 @@ namespace OmegaBakery.Domain
     internal class DiscountService
     {
 
-        private List<Discount> discounts = new List<Discount>()
+        private List<IDiscount> discounts = new List<IDiscount>()
         {
-//            new Discount()
-        }
+            //            new Discount()
+        };
     }
 }

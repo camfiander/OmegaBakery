@@ -1,6 +1,6 @@
 ﻿namespace OmegaBakery.Domain.Products
 {
-    public interface IOutsideProduct
+    public interface IOutsideProduct : IProduct
     {
     }
 }

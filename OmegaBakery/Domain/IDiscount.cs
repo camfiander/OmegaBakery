@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain
 {
-    internal interface Discount 
+    internal interface IDiscount 
     {
         /// <summary>
         /// Determines if discount is applicable
         /// </summary>
         /// <param name="item"></param>
         /// <returns>true if the Discount is applicable for the line item, otherwise false</returns>
-        public Boolean isDiscounted(LineItem item);
+        public bool isDiscounted(ProductLineItem item);
 
         /// <summary>
         /// Creates new Line Item with discounted subtotal
         /// </summary>
         /// <param name="item"></param>
         /// <returns>Line item with discount applied</returns>
-        public DiscountedItem apply(LineItem item);
+        //public DiscountedItem apply(LineItem item);
         
     }
 }

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain
 {
-    internal class ProductLineItem : LineItem
+    internal class ProductLineItem : ILineItem
     {
         private int count;
-        private Product product;
+        private IProduct product;
         public int Count => count;
 
-        public Product Product => product;
+        public IProduct Product => product;
 
         public double Subtotal 
         { 
@@ -22,7 +22,7 @@ namespace OmegaBakery.Domain
             } 
         }
 
-        public ProductLineItem(Product product, int count)
+        public ProductLineItem(IProduct product, int count)
         {
             this.product = product;
             this.count = count;
@@ -31,4 +31,4 @@ namespace OmegaBakery.Domain
 
 
 }
-}
+
