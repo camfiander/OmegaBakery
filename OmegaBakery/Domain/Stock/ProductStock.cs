@@ -9,7 +9,7 @@ namespace OmegaBakery.Domain.Stock
 {
     internal class ProductStock
     {
-        public Product Product { get; private set; }
+        public IProduct Product { get; private set; }
 
         public int InitialCount { get; private set; }
 
@@ -18,7 +18,7 @@ namespace OmegaBakery.Domain.Stock
         public int LocationId { get; private set; }
         public DateTime CreationTime { get; private set; }
 
-        public ProductStock(Product product, int count)
+        public ProductStock(IProduct product, int count)
         {
             Product = product;
             InitialCount = count;
