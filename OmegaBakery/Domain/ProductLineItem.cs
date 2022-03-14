@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain
 {
-    internal class ProductLineItem : LineItem
+    internal class ProductLineItem : ILineItem
     {
         private int count;
         private IProduct product;

@@ -11,7 +11,7 @@ namespace OmegaBakery.Domain
         public Order Order { get; set; }
         public void checkout()
         {
-            foreach(LineItem item in Order.LineItems)
+            foreach(ILineItem item in Order.LineItems)
             {
                 
             }
