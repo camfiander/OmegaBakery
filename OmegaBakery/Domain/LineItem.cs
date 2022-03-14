@@ -10,7 +10,7 @@ namespace OmegaBakery.Domain
     internal interface LineItem
     {
         public int Count { get; }
-        public Product Product { get; }
+        public IProduct Product { get; }
 
         public double Subtotal { get; }
 
