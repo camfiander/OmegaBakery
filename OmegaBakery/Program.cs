@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OmegaBakery.Domain.Products;
+using OmegaBakery.Domain.Stock;
+using System;
 
 namespace OmegaBakery
 {
@@ -6,7 +8,7 @@ namespace OmegaBakery
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CustomerClient.run();
         }
     }
 }
