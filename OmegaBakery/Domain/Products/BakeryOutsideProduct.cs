@@ -8,19 +8,38 @@ namespace OmegaBakery.Domain.Products
 {
     internal class BakeryOutsideProduct : IOutsideProduct
     {
-        public int ProductId => throw new NotImplementedException();
+        public int ProductId { get; private set; }
 
-        public string Name => throw new NotImplementedException();
+        public string Name { get; private set; }
+        public string Company { get; private set; }
 
-        public string Description => throw new NotImplementedException();
+        public string Description { get; private set; }
 
-        public double BasePrice => throw new NotImplementedException();
+        public double BasePrice { get; private set; }
+
+        public int LocationId { get; private set; }
 
         public bool Equals(IProduct? other)
         {
             throw new NotImplementedException();
         }
 
+        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company)
+        {
+            ProductId = productId;
+            Name = name;
+            Description = description;
+            BasePrice = basePrice;
+            LocationId = locationId;
+            Company = company;
+        }
+
+        public BakeryOutsideProduct()
+        {
+            Name = String.Empty;
+            Company = String.Empty;
+            Description = String.Empty;
+        }
         public string Render()
         {
             throw new NotImplementedException();

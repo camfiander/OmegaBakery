@@ -12,7 +12,6 @@ namespace OmegaBakery
     {
         public static void run()
         {
-            Console.WriteLine("Welcome to Omega Bakery!");
             while (true)
             {
 
