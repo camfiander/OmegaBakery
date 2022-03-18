@@ -12,15 +12,21 @@ namespace OmegaBakery.Domain.Order
     {
         private List<ProductLineItem> _productLineItems;
 
-        private IDiscount discount;
+        private IDiscount _discount;
 
         public int Count => 0;
 
-        public DiscountedLineItem(ProductLineItem productLineItem, IDiscount discount)
+        public double Subtotal => throw new NotImplementedException();
+
+        public DiscountedLineItem(List<ProductLineItem> productLineItems, IDiscount discount)
         {
-            this.productLineItem = productLineItem;
-            this.discount = discount;
+            _productLineItems = productLineItems;
+            _discount = discount;
         }
-    
+
+        public string Render()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

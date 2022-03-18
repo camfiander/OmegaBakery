@@ -27,6 +27,11 @@ namespace OmegaBakery.Domain.Order
             this.product = product;
             this.count = count;
         }
+
+        public string Render()
+        {
+            return $"{product.Name} | {Count} | {Subtotal.ToString("C")}";
+        }
     }
 
 

@@ -28,5 +28,10 @@ namespace OmegaBakery.Domain.Order
         {
             return line;
         }
+
+        public String Render()
+        {
+            return string.Empty;
+        }
     }
 }
