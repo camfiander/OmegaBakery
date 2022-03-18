@@ -1,11 +1,12 @@
-﻿using OmegaBakery.Domain.Products;
+﻿using OmegaBakery.Domain.Discount;
+using OmegaBakery.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OmegaBakery.Domain
+namespace OmegaBakery.Domain.Order
 {
     internal class DiscountedItem : ILineItem
     {

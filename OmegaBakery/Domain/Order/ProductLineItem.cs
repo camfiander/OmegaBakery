@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OmegaBakery.Domain
+namespace OmegaBakery.Domain.Order
 {
     internal class ProductLineItem : ILineItem
     {
