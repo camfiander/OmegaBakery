@@ -15,12 +15,15 @@ namespace OmegaBakery.Domain.Products
 
         public TimeSpan ShelfLife { get; private set; }
 
-        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, TimeSpan shelfLife)
+        public int LocationId { get; private set; }
+
+        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, TimeSpan shelfLife)
         {
             ProductId = productId;
             Name = name;
             Description = description;
             BasePrice = basePrice;
+            LocationId = locationId;
             ShelfLife = shelfLife;
         }
 

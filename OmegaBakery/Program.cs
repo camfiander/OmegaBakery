@@ -1,5 +1,4 @@
-﻿using OmegaBakery.Domain.Products;
-using OmegaBakery.Domain.Stock;
+﻿using OmegaBakery.Domain.Admin;
 using System;
 
 namespace OmegaBakery
@@ -8,7 +7,7 @@ namespace OmegaBakery
     {
         static void Main(string[] args)
         {
-            CustomerClient.run();
+            Startup.startupApp();
         }
     }
 }
