@@ -15,5 +15,7 @@ namespace OmegaBakery.Domain.Order
 
         public string Render();
 
+        public ProductType ProductType { get; }
+
     }
 }

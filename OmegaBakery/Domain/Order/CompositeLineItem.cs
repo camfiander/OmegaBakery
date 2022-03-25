@@ -9,10 +9,12 @@ namespace OmegaBakery.Domain.Order
 {
     internal class CompositeLineItem : ILineItem
     {
-        private List<ILineItem> _items;
+        protected List<ILineItem> _items;
         public int Count => _items.Sum(x => x.Count);
 
-        public double Subtotal => _items.Sum(x => x.Subtotal);
+        public virtual double Subtotal => _items.Sum(x => x.Subtotal);
+
+        public ProductType ProductType { get; }
 
         public string Render()
         {
@@ -23,6 +25,21 @@ namespace OmegaBakery.Domain.Order
                 sb.Append(item.Render());
             }
             return sb.ToString();
+        }
+
+        public CompositeLineItem(ProductType productType)
+        {
+            ProductType = productType;
+        }
+
+        public void AddLineItem(ILineItem lineItem)
+        {
+            if(lineItem.ProductType != ProductType)
+            {
+                return;
+            }
+
+            _items.Add(lineItem);
         }
     }
 }

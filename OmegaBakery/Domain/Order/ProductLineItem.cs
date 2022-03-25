@@ -9,11 +9,9 @@ namespace OmegaBakery.Domain.Order
 {
     internal class ProductLineItem : ILineItem
     {
-        private int count;
-        private IProduct product;
-        public int Count => count;
+        public int Count { get; private set; }
 
-        public IProduct Product => product;
+        public IProduct Product { get; private set; }
 
         public double Subtotal 
         { 
@@ -22,15 +20,17 @@ namespace OmegaBakery.Domain.Order
             } 
         }
 
+        public ProductType ProductType => Product.ProductType;
+
         public ProductLineItem(IProduct product, int count)
         {
-            this.product = product;
-            this.count = count;
+            Product = product;
+            Count = count;
         }
 
         public string Render()
         {
-            return $"{product.Name} | {Count} | {Subtotal.ToString("C")}";
+            return $"{Product.Name} | {Count} | {Subtotal.ToString("C")}";
         }
     }
 

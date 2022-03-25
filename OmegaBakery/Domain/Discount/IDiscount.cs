@@ -10,21 +10,30 @@ namespace OmegaBakery.Domain.Discount
 {
     internal interface IDiscount 
     {
+
+        public string Name { get; set; }
+
         /// <summary>
         /// Determines if discount is applicable
         /// </summary>
         /// <param name="item"></param>
         /// <returns>true if the Discount is applicable for the line item, otherwise false</returns>
-        public bool isDiscounted(List<ProductLineItem> items);
+        public bool isDiscounted(ILineItem item);
 
         /// <summary>
         /// Creates new Line Item with discounted subtotal
         /// </summary>
         /// <param name="item"></param>
-        /// <returns>Line item with discount applied</returns>
-        //public DiscountedItem apply(LineItem item);
-        public double getDiscountSubtotal(List<ProductLineItem> items);
-        
-        
+        /// <returns>Price reduction (in negative $) for applied discount</returns>
+        public double getDiscountSubtotal(ILineItem item);
+        /// <summary>
+        /// Creates new Line Item with discounted subtotal
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="baseSubtotal">Subtotal from which the discount should be based</param>
+        /// <returns>Price reduction (in negative $) for applied discount</returns>
+        public double getDiscountSubtotal(ILineItem item,double baseSubtotal);
+
+
     }
 }

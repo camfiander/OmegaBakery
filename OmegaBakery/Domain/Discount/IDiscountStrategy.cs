@@ -9,6 +9,6 @@ namespace OmegaBakery.Domain.Discount
 {
     internal interface IDiscountStrategy
     {
-        public double getDiscountSubtotal(List<ProductLineItem> items);
+        public double getDiscountSubtotal(ILineItem item, double baseSubtotal);
     }
 }

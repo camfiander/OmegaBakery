@@ -10,9 +10,9 @@ namespace OmegaBakery.Domain.Discount
     internal class PercentDiscountStrategy : IDiscountStrategy
     {
         private double _discount;
-        public double getDiscountSubtotal(List<ProductLineItem> items)
+        public double getDiscountSubtotal(ILineItem item, double baseSubtotal)
         {
-            return items.Sum(x => x.Subtotal) * _discount * -1;
+            return baseSubtotal * _discount * -1;
         }
 
         public PercentDiscountStrategy(double discount)

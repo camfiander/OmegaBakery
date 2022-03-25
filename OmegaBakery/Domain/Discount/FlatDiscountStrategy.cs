@@ -10,7 +10,7 @@ namespace OmegaBakery.Domain.Discount
     internal class FlatDiscountStrategy : IDiscountStrategy
     {
         private double _discount;
-        public double getDiscountSubtotal(List<ProductLineItem> items)
+        public double getDiscountSubtotal(ILineItem item, double baseSubtotal)
         {
             return _discount * -1;
         }

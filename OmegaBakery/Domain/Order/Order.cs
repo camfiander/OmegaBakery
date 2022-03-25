@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmegaBakery.Domain.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +12,30 @@ namespace OmegaBakery.Domain.Order
         public int Id { get; private set; }
         public IReadOnlyCollection<ILineItem> LineItems { get => _lineItems; }
 
-        private List<ILineItem> _lineItems;
+        private List<CompositeLineItem> _lineItems;
 
-        public Order(List<ILineItem> lineItems)
+        public Order()
         {
-            _lineItems = lineItems;
+            _lineItems = new List<CompositeLineItem>();
         }
 
-        public void addLineItem(ILineItem lineItem)
+        public void AddLineItem(ILineItem lineItem)
         {
-            _lineItems.Add(lineItem);
+            //Add to composite line item with same product type
+            CompositeLineItem? lineItemForType = _lineItems.Find(x => x.ProductType.Equals(lineItem.ProductType));
+            if (lineItemForType == null)
+            {
+                lineItemForType = new CompositeLineItem(lineItem.ProductType);
+                _lineItems.Add(lineItemForType);
+
+            }
+            lineItemForType.AddLineItem(lineItem);
+        }
+
+        
+        public void updateCount(IProduct product, int newCount)
+        {
+            
         }
         
     }

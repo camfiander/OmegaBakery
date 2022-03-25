@@ -10,24 +10,36 @@ namespace OmegaBakery.Domain.Discount
 {
     internal class Discount : IDiscount
     {
-        private IDiscountStrategy strategy;
-        private List<IProduct> _discountableProducts;
+        private IDiscountStrategy _strategy;
 
-        public double getDiscountSubtotal(List<ProductLineItem> items)
+        private Predicate<ILineItem> _predicate;
+
+        public string Name { get; set; }
+
+        public double getDiscountSubtotal(ILineItem item)
         {
-            return strategy.getDiscountSubtotal(items);
+            return _strategy.getDiscountSubtotal(item,item.Subtotal);
         }
 
-        public bool isDiscounted(List<ProductLineItem> items)
+        public double getDiscountSubtotal(ILineItem item, double baseSubtotal)
         {
-            foreach (ProductLineItem item in items)
+            if (isDiscounted(item))
             {
-                if (!_discountableProducts.Any(x => x.Equals(item.Product)))
-                {
-                    return false;
-                }
+                return _strategy.getDiscountSubtotal(item, baseSubtotal);
             }
-            return true;
+            return 0;
+        }
+
+        public bool isDiscounted(ILineItem item)
+        {
+            return _predicate.Invoke(item);
+        }
+
+        public Discount(IDiscountStrategy strategy, string name, Predicate<ILineItem> predicate)
+        {
+            _strategy = strategy;
+            Name = name;
+            _predicate = predicate;
         }
     }
 }

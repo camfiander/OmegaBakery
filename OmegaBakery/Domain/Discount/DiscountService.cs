@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OmegaBakery.Domain.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,14 @@ namespace OmegaBakery.Domain.Discount
     internal class DiscountService
     {
 
-        private List<IDiscount> discounts = new List<IDiscount>()
+        private static List<IDiscount> discounts = new List<IDiscount>()
         {
-            //            new Discount()
+           new Discount(new PercentDiscountStrategy(0.2), "20 PERCENT OFF BAGELS", x => x.ProductType.Equals(ProductType.Bagel))
         };
+
+        public static List<IDiscount> GetDiscounts()
+        {
+            return discounts;
+        }
     }
 }

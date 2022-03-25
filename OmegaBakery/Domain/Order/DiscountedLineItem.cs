@@ -8,25 +8,26 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain.Order
 {
-    internal class DiscountedLineItem : ILineItem
+    internal class DiscountedLineItem : CompositeLineItem
     {
-        private List<ProductLineItem> _productLineItems;
-
         private IDiscount _discount;
 
-        public int Count => 0;
+        public override double Subtotal => _items.Sum(x => x.Subtotal) + _discount.getDiscountSubtotal(this,base.Subtotal);
 
-        public double Subtotal => throw new NotImplementedException();
-
-        public DiscountedLineItem(List<ProductLineItem> productLineItems, IDiscount discount)
+        public DiscountedLineItem(ILineItem lineItem, IDiscount discount) : base(lineItem.ProductType)
         {
-            _productLineItems = productLineItems;
+            AddLineItem(lineItem);
             _discount = discount;
         }
 
         public string Render()
         {
-            throw new NotImplementedException();
+            double discountAmount = _discount.getDiscountSubtotal(this, base.Subtotal);
+            if(discountAmount > 0)
+            {
+                return base.Render() + $"{_discount.Name}\t{discountAmount.ToString("C")}";
+            }
+            return base.Render();
         }
     }
 }
