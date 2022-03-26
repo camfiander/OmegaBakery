@@ -68,7 +68,7 @@ namespace OmegaBakery.Domain.Admin
                     var boCsv = Console.ReadLine();
                     if (!string.IsNullOrWhiteSpace(path) || !string.IsNullOrWhiteSpace(biCsv) || !string.IsNullOrWhiteSpace(boCsv))
                     {
-                        if(CSVService.ChangeFileName(path, biCsv, boCsv))
+                        if(ChangeFileName(path, biCsv, boCsv))
                         {
                             Console.WriteLine("Success!!");
                             var ch = Console.ReadLine();
@@ -83,6 +83,12 @@ namespace OmegaBakery.Domain.Admin
                     goto CheckPoint1;
             }
 
+        }
+
+        public static bool ChangeFileName(string path, string bihName, string boName)
+        {
+            var csvConfig = new CSVConfig(Path.Combine(AppService.GetBasePath(), path), bihName, boName);
+            return AppService.AddOrUpdateAppSetting<CSVConfig>("CSV FileName", csvConfig);
         }
     }
 }

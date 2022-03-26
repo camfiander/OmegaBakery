@@ -10,29 +10,30 @@ using OmegaBakery.Domain.Products;
 
 namespace OmegaBakery.Domain.Data
 {
-    internal static class CSVService
+    internal class CSVService
     {
-        static CsvHelper.Configuration.CsvConfiguration configure = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+        private static CsvHelper.Configuration.CsvConfiguration configure = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
         {
             PrepareHeaderForMatch = args => args.Header.ToLower(),
         };
 
-        public static List<U> ReadCSVFile<T, U>(string location)
+        public List<U> ReadCSVFile<T, U>(string location) where T : ClassMap<U>
         {
             try
             {
                 using var reader = new StreamReader(location, Encoding.Default);
-                using var csv = new CsvReader((IParser)reader);
-                csv.Context.RegisterClassMap<ClassMap<T>>();
+                using var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture);
+                csv.Context.RegisterClassMap<T>();
                 var records = csv.GetRecords<U>().ToList();
                 return records;
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                Console.WriteLine("System Error!\n", e);
+                return new List<U>();
             }
         }
-        public static void WriteCSVFile<U>(string path, List<U> products)
+        public void WriteCSVFile<U>(string path, List<U> products)
         {
             using StreamWriter sw = new StreamWriter(path, false, new UTF8Encoding(true));
             using CsvWriter cw = new CsvWriter(sw, configure);
@@ -43,12 +44,6 @@ namespace OmegaBakery.Domain.Data
                 cw.WriteRecord<U>(product);
                 cw.NextRecord();
             }
-        }
-
-        public static bool ChangeFileName(string path, string bihName, string boName)
-        {
-            var csvConfig = new CSVConfig(Path.Combine(AppService.GetBasePath(), path), bihName, boName);
-            return AppService.AddOrUpdateAppSetting<CSVConfig>("CSV FileName", csvConfig);
         }
     }
 }

@@ -13,18 +13,21 @@ namespace OmegaBakery.Domain.Products
         public string Description { get; private set; }
         public double BasePrice { get; private set; }
 
-        public TimeSpan ShelfLife { get; private set; }
+        public DateTime ExpiryDate { get; private set; }
 
-        public int LocationId { get; private set; }
+        public int? LocationId { get; private set; }
 
-        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, TimeSpan shelfLife)
+        public DateTime DateAdded { get; private set; }
+
+        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, DateTime expiryDate, DateTime dateAdded)
         {
             ProductId = productId;
             Name = name;
             Description = description;
             BasePrice = basePrice;
             LocationId = locationId;
-            ShelfLife = shelfLife;
+            ExpiryDate = expiryDate;
+            DateAdded = dateAdded;
         }
 
         public BakeryInHouseProduct() 

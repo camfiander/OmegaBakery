@@ -17,14 +17,16 @@ namespace OmegaBakery.Domain.Products
 
         public double BasePrice { get; private set; }
 
-        public int LocationId { get; private set; }
+        public int? LocationId { get; private set; }
+
+        public DateTime DateAdded { get; private set; }
 
         public bool Equals(IProduct? other)
         {
             throw new NotImplementedException();
         }
 
-        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company)
+        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company, DateTime dateAdded)
         {
             ProductId = productId;
             Name = name;
@@ -32,6 +34,7 @@ namespace OmegaBakery.Domain.Products
             BasePrice = basePrice;
             LocationId = locationId;
             Company = company;
+            DateAdded = dateAdded;
         }
 
         public BakeryOutsideProduct()
