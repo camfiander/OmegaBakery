@@ -15,6 +15,8 @@ namespace OmegaBakery.Domain.Products
 
         public TimeSpan ShelfLife { get; private set; }
 
+        public ProductType ProductType { get; private set; }
+
         public int LocationId { get; private set; }
 
         public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, TimeSpan shelfLife)

@@ -15,6 +15,8 @@ namespace OmegaBakery.Domain.Products
 
         public string Description { get; private set; }
 
+        public ProductType ProductType { get; private set; }
+
         public double BasePrice { get; private set; }
 
         public int LocationId { get; private set; }
