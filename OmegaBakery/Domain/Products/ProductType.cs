@@ -12,6 +12,8 @@ namespace OmegaBakery.Domain.Products
         Bread = 2,
         Cake = 3,
         Buns = 4,
+        Chips = 5,
+        Smoothie = 6
 
     }
 }

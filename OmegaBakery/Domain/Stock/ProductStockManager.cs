@@ -14,11 +14,11 @@ namespace OmegaBakery.Domain.Stock
             List<IProduct> products = ProductService.GetProducts("All").Cast<IProduct>().ToList();
             _stockList = new List<ProductStock>();
             var productGroupCount = products.GroupBy(
-                                    prod => prod.Name,
-                                    (key, g) => new { prodName = key, prodCount = g.Count() });
+                                    prod => prod.ProductType,
+                                    (key, g) => new { ProductType = key, prodCount = g.Count() });
             foreach (var product in products)
             {
-                _stockList.Add(new ProductStock(product, productGroupCount.First(x=>x.prodName.Equals(product.Name)).prodCount));
+                _stockList.Add(new ProductStock(product, productGroupCount.First(x=>x.ProductType.Equals(product.ProductType)).prodCount));
             }
         }
 
@@ -36,7 +36,7 @@ namespace OmegaBakery.Domain.Stock
 
         public int getStockCount(IProduct product)
         {
-            return _stockList.Where(x => x.Product.Equals(product)).Sum(x => x.AvailableCount);
+            return _stockList.First(x => x.Product.Equals(product)).AvailableCount;
         }
 
         public bool sellStock(IProduct product, int count)

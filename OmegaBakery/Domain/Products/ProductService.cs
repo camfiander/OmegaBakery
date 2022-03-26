@@ -27,7 +27,7 @@ namespace OmegaBakery.Domain.Products
             return new List<ProductFamily>
             {
                 new InHouseProductFamily("Baked goods",GetProducts("Baked goods").Cast<BakeryInHouseProduct>().ToList()),
-                new OutsideProductFamily("Packaged item",GetProducts("Packaged item").Cast<BakeryOutsideProduct>().ToList())
+                new OutsideProductFamily("Packaged items",GetProducts("Packaged items").Cast<BakeryOutsideProduct>().ToList())
             };
         }
     }
