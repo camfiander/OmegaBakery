@@ -5,14 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OmegaBakery.Domain
+namespace OmegaBakery.Domain.Order
 {
     internal interface ILineItem
     {
         public int Count { get; }
-        public IProduct Product { get; }
-
+        //public IProduct Product { get; }
         public double Subtotal { get; }
+
+        public string Render();
+
+        public ProductType ProductType { get; }
 
     }
 }

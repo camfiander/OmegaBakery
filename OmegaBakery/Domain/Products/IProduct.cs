@@ -10,6 +10,7 @@ namespace OmegaBakery.Domain.Products
     {
         public int ProductId { get; }
         public string Name { get; }
+        public ProductType ProductType { get; }
         public string Description { get; }
         public double BasePrice { get; }
         public int? LocationId { get; }

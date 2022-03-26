@@ -18,6 +18,7 @@ namespace OmegaBakery.Domain.Products
         public int? LocationId { get; private set; }
 
         public DateTime DateAdded { get; private set; }
+        public ProductType ProductType { get; private set; }
 
         public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, DateTime expiryDate, DateTime dateAdded)
         {
