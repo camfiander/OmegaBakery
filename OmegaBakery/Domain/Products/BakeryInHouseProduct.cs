@@ -8,25 +8,27 @@ namespace OmegaBakery.Domain.Products
 {
     internal class BakeryInHouseProduct : IInHouseProduct
     {
-        public int ProductId { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public double BasePrice { get; private set; }
+        public int ProductId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double BasePrice { get; set; }
 
-        public TimeSpan ShelfLife { get; private set; }
+        public DateTime ExpiryDate { get; set; }
 
-        public ProductType ProductType { get; private set; }
+        public int? LocationId { get; set; }
 
-        public int LocationId { get; private set; }
+        public DateTime DateAdded { get; set; }
+        public ProductType ProductType { get; set; }
 
-        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, TimeSpan shelfLife)
+        public BakeryInHouseProduct(int productId, string name, string description, double basePrice, int locationId, DateTime expiryDate, DateTime dateAdded)
         {
             ProductId = productId;
             Name = name;
             Description = description;
             BasePrice = basePrice;
             LocationId = locationId;
-            ShelfLife = shelfLife;
+            ExpiryDate = expiryDate;
+            DateAdded = dateAdded;
         }
 
         public BakeryInHouseProduct() 

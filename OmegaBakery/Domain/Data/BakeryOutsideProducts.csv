@@ -1,1 +1,5 @@
-﻿
+﻿ProductId,Name,Company,Description,ProductType,BasePrice,LocationId,DateAdded
+0,Doritos,Frito-Lay,Red Doritos,5,2,1,26-03-2022
+1,Doritos,Frito-Lay,Red Doritos,5,2,1,26-03-2022
+2,Doritos,Frito-Lay,Orange Doritos,5,2,1,26-03-2022
+3,Doritos,Frito-Lay,Orange Doritos,5,2,1,26-03-2022

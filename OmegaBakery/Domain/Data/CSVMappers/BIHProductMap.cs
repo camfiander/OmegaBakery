@@ -17,7 +17,9 @@ namespace OmegaBakery.Domain.Data.CSVMappers
             Map(x => x.Description).Name("Description");
             Map(x => x.BasePrice).Name("BasePrice");
             Map(x => x.LocationId).Name("Location");
-            Map(x => x.ShelfLife).Name("ShelfLife");
+            Map(x => x.ProductType).Name("ProductType");
+            Map(x => x.ExpiryDate).Name("ExpiryDate");
+            Map(x => x.DateAdded).Name("DateAdded");
         }
     }
 }

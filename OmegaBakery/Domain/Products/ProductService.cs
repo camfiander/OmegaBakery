@@ -10,9 +10,10 @@ namespace OmegaBakery.Domain.Products
     //Holds placeholder data for now, could be replaced by a DB service later
     internal class ProductService
     {
-        public static List<IProduct> GetProducts()
+        public static IEnumerable<IProduct> GetProducts(string family)
         {
-            return DataService.GetDataForProduct();
+            var dataService = DataService.getInstance(); 
+            return dataService.GetDataForProduct(family);
             //return new List<IProduct>()
             //{
             //    new BakeryInHouseProduct(0,"bread","let them eat cake",2.50, 1,TimeSpan.FromDays(7)),
@@ -25,7 +26,8 @@ namespace OmegaBakery.Domain.Products
         {
             return new List<ProductFamily>
             {
-                new InHouseProductFamily("Baked goods",GetProducts().Cast<BakeryInHouseProduct>().ToList())
+                new InHouseProductFamily("Baked goods",GetProducts("Baked goods").Cast<BakeryInHouseProduct>().ToList()),
+                new OutsideProductFamily("Packaged items",GetProducts("Packaged items").Cast<BakeryOutsideProduct>().ToList())
             };
         }
     }

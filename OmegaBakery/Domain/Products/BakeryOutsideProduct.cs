@@ -8,25 +8,22 @@ namespace OmegaBakery.Domain.Products
 {
     internal class BakeryOutsideProduct : IOutsideProduct
     {
-        public int ProductId { get; private set; }
+        public int ProductId { get; set; }
 
-        public string Name { get; private set; }
-        public string Company { get; private set; }
+        public string Name { get; set; }
+        public string Company { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        public ProductType ProductType { get; private set; }
+        public ProductType ProductType { get; set; }
 
-        public double BasePrice { get; private set; }
+        public double BasePrice { get; set; }
 
-        public int LocationId { get; private set; }
+        public int? LocationId { get; set; }
 
-        public bool Equals(IProduct? other)
-        {
-            throw new NotImplementedException();
-        }
+        public DateTime DateAdded { get; set; }
 
-        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company)
+        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company, DateTime dateAdded)
         {
             ProductId = productId;
             Name = name;
@@ -34,6 +31,7 @@ namespace OmegaBakery.Domain.Products
             BasePrice = basePrice;
             LocationId = locationId;
             Company = company;
+            DateAdded = dateAdded;
         }
 
         public BakeryOutsideProduct()
@@ -44,7 +42,16 @@ namespace OmegaBakery.Domain.Products
         }
         public string Render()
         {
-            throw new NotImplementedException();
+            return Name + " - " + Description + " - " + BasePrice.ToString("C");
+        }
+
+        public bool Equals(IProduct? other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return other.Name.Equals(Name);
         }
     }
 }
