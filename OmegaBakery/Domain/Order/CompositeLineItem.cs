@@ -41,5 +41,16 @@ namespace OmegaBakery.Domain.Order
 
             _items.Add(lineItem);
         }
+
+        public void UpdateCount(IProduct product, int newCount)
+        {
+            _items.Find(x => x.HasProduct(product))
+                .UpdateCount(product, newCount);
+        }
+
+        public bool HasProduct(IProduct product)
+        {
+            return _items.Any(x => x.HasProduct(product));
+        }
     }
 }

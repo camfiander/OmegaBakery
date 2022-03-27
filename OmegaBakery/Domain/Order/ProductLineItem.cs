@@ -32,6 +32,16 @@ namespace OmegaBakery.Domain.Order
         {
             return $"{Product.Name} | {Count} | {Subtotal.ToString("C")}";
         }
+
+        public void UpdateCount(IProduct product, int count)
+        {
+            Count = count;
+        }
+
+        public bool HasProduct(IProduct product)
+        {
+            return Product.Equals(product);
+        }
     }
 
 

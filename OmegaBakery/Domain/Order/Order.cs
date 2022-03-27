@@ -9,7 +9,7 @@ namespace OmegaBakery.Domain.Order
 {
     internal class Order
     {
-        public int Id { get; private set; }
+        public int OrderId { get; private set; }
         public IReadOnlyCollection<ILineItem> LineItems { get => _lineItems; }
 
         private List<CompositeLineItem> _lineItems;
@@ -35,6 +35,8 @@ namespace OmegaBakery.Domain.Order
         
         public void updateCount(IProduct product, int newCount)
         {
+            _lineItems.Find(x => x.ProductType.Equals(product.ProductType))
+                .UpdateCount(product,newCount);
             
         }
         
