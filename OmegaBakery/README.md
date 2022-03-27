@@ -49,8 +49,11 @@ Administration provides the following features:
 - Ability to change the username and password for the administrator login
 - Ability to change the path and names of the data files from which data is retrieved, which are now saved in the appsettings
 
+appsettings.json is a json file which stores app related information and is accessed using the AppService class, which utilises the Newtonsoft Json package.
+
 ## Data
 DataService is follows a **Facade** pattern wherein it interacts with all data related subsystems instead of the client directly accessing these subsystems.
 In this light, it is also implemented as a **singleton** because multiple data access at the same time needs to be avoided.
 At present it provides functionality to retrieve product data from the csv files through the CsvService Subsystem, but can be easily extended with other data fetching subsystems.
 
+The CsvService uses the package CsvHelper to read and write to the csv file whose name and location are stored in the appsettings.

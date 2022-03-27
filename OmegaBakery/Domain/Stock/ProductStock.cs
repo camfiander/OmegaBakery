@@ -26,7 +26,7 @@ namespace OmegaBakery.Domain.Stock
             CreationTime = DateTime.Now;
         }
 
-        public int sell(int count)
+        public int Sell(int count)
         {
             if (count <= 0)
             {

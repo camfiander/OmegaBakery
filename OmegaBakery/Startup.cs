@@ -8,7 +8,7 @@ namespace OmegaBakery
         {
             AppService.InitConfig();
         }
-        public static void runStartScreen()
+        public static void RunStartScreen()
         {
             Console.WriteLine("Welcome to Omega Bakery!");
 
@@ -26,14 +26,14 @@ namespace OmegaBakery
                     CustomerClient.run();
                     break;
                 case 2:
-                    Administration.login();
+                    Administration.Login();
                     break;
             }
         }
-        public static void startupApp()
+        public static void StartupApp()
         {
             InitConfig();
-            runStartScreen();
+            RunStartScreen();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OmegaBakery.Domain.Products
     {
         public static IEnumerable<IProduct> GetProducts(string family)
         {
-            var dataService = DataService.getInstance(); 
+            var dataService = DataService.GetInstance(); 
             return dataService.GetDataForProduct(family);
             //return new List<IProduct>()
             //{

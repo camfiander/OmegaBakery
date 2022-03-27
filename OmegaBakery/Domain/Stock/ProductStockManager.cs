@@ -26,7 +26,7 @@ namespace OmegaBakery.Domain.Stock
 
         private List<ProductStock> _stockList;
 
-        public static ProductStockManager getInstance() { 
+        public static ProductStockManager GetInstance() { 
             if( _instance == null)
             {
                 _instance = new ProductStockManager();
@@ -34,18 +34,18 @@ namespace OmegaBakery.Domain.Stock
             return _instance;
         }
 
-        public int getStockCount(IProduct product)
+        public int GetStockCount(IProduct product)
         {
             return _stockList.First(x => x.Product.Equals(product)).AvailableCount;
         }
 
-        public bool sellStock(IProduct product, int count)
+        public bool SellStock(IProduct product, int count)
         {
             if (count <= 0)
             {
                 return false;
             }
-            if (getStockCount(product) < count)
+            if (GetStockCount(product) < count)
             {
                 return false;
             }
@@ -55,7 +55,7 @@ namespace OmegaBakery.Domain.Stock
             while (countRemaining > 0)
             {
                 productStocks.MoveNext();
-                countRemaining -= productStocks.Current.sell(countRemaining);
+                countRemaining -= productStocks.Current.Sell(countRemaining);
             }
             return true;
         }
