@@ -1,11 +1,20 @@
 *this report must contain:*
 - Description of the system
-- Objectives of the design patters
+- Objectives of the design patterns
 - UML structure for classes
 
 # OmegaBakery
+OmegaBakery is a console application which acts as the front for a store where customers view and buy products from. 
+At the initial stages, the application is programmed to work for a fictional Bakery business, which sells baked goods made in-house as well as items manufactured by other companies.
+It is designed in such a way that it can be easily extended to other businesses with minimal code changes.
+
+The application aims to provide basic functionalities like view items available, add to order, apply discounts, and checkout order.
 
 ## Products
+![](img/Product.png)
+There are two types of products that are supported by the application: in-house products which are produced inside the store and outside products which are purchased from other manufacturers and sold in store.
+This necessitates the need for an **Abstract Factory pattern**, so that the app can be extended to more product lines apart from the Bakery.
+A product stock manager manages the available count of product stock during operation. The stock manager is implemented as a singleton since multiple objects deducing stock count need to be avoided.
 
 ## Discounts
 ![](img/IDiscount.png)
@@ -35,5 +44,13 @@ An **Order** represents the current state of a user's cart. It contains the logi
 To simplify the process of applying discounts, line items are automatically grouped into CompositeLineItems of the same ProductType.
 
 ## Administration
+Administration provides the following features:
+- Ability for administrator to login using a username and password which presently saved in the appsettings
+- Ability to change the username and password for the administrator login
+- Ability to change the path and names of the data files from which data is retrieved, which are now saved in the appsettings
 
 ## Data
+DataService is follows a **Facade** pattern wherein it interacts with all data related subsystems instead of the client directly accessing these subsystems.
+In this light, it is also implemented as a **singleton** because multiple data access at the same time needs to be avoided.
+At present it provides functionality to retrieve product data from the csv files through the CsvService Subsystem, but can be easily extended with other data fetching subsystems.
+
