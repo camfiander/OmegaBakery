@@ -8,8 +8,8 @@ namespace OmegaBakery.Domain.Products
 {
     public class BakeryFactory : IProductFactory
     {
-        public IInHouseProduct createInHouseProduct() => new BakeryInHouseProduct();
+        public IInHouseProduct createInHouseProduct() => new InHouseProduct();
 
-        public IOutsideProduct createOutsideProduct() => new BakeryOutsideProduct();
+        public IOutsideProduct createOutsideProduct() => new OutsideProduct();
     }
 }
