@@ -48,6 +48,11 @@ namespace OmegaBakery.Domain.Data
             return null;
         }
 
+        public int GetStockForProduct(int productId)
+        {
+
+        }
+
         public static List<BakeryInHouseProduct> GetInHouseProducts()
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
@@ -63,5 +68,18 @@ namespace OmegaBakery.Domain.Data
                                                     csvConfig.Path + csvConfig.BOutsideFileName + ".csv");
             return products.ToList();
         }
+
+        public static HashSet<int> GetStock()
+        {
+            var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
+            var stocks = _csvService.ReadCSVFile<ProductStockMap, ProductStockData>(
+                                                    csvConfig.Path + csvConfig.ProductStockFileName + ".csv");
+            HashSet<int> set = new HashSet<int>();
+            foreach (var stock in stocks)
+            {
+                set.Add(stock.ProductId,stock.)
+            }
+        }
+
     }
 }
