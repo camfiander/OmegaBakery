@@ -87,7 +87,7 @@ namespace OmegaBakery.Domain.Admin
 
         public static bool ChangeFileName(string path, string bihName, string boName)
         {
-            var csvConfig = new CSVConfig(Path.Combine(AppService.GetBasePath(), path), bihName, boName);
+            var csvConfig = new CSVConfig(path, bihName, boName);
             return AppService.AddOrUpdateAppSetting<CSVConfig>("CSV FileName", csvConfig);
         }
     }

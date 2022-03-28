@@ -52,7 +52,7 @@ namespace OmegaBakery.Domain.Data
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
             var products = _csvService.ReadCSVFile<BIHProductMap, InHouseProduct>(
-                                                    csvConfig.Path + csvConfig.BInHouseFileName + ".csv");
+                                                    Path.Combine(AppService.GetBasePath(), csvConfig.Path) + csvConfig.BInHouseFileName + ".csv");
             return products.ToList();
         }
 
@@ -60,7 +60,7 @@ namespace OmegaBakery.Domain.Data
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
             var products = _csvService.ReadCSVFile<BOProductMap, OutsideProduct>(
-                                                    csvConfig.Path + csvConfig.BOutsideFileName + ".csv");
+                                                    Path.Combine(AppService.GetBasePath(), csvConfig.Path) + csvConfig.BOutsideFileName + ".csv");
             return products.ToList();
         }
     }
