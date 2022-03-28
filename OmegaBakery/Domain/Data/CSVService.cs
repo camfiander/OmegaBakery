@@ -22,7 +22,7 @@ namespace OmegaBakery.Domain.Data
             try
             {
                 using var reader = new StreamReader(location, Encoding.Default);
-                using var csv = new CsvReader(reader, System.Globalization.CultureInfo.CurrentCulture);
+                using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 csv.Context.RegisterClassMap<T>();
                 var records = csv.GetRecords<U>().ToList();
                 return records;
