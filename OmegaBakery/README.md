@@ -36,7 +36,11 @@ Discounts require flexibility for how they are applied to line items. For exampl
 
 ## Line Items
 ![](img/ILineItem.png)
-Line Items use the **composite** design pattern, which allows us to apply *IDiscount*s to either a single line item or multiple line items
+A line item represents a set of purchases contained in an **Order**.   
+
+Line Items use the **composite** design pattern, which allows us to apply discounts flexibly to a single line item or group of line items.
+
+A **ProductLineItem** is composed of an **IProduct** object and a count value.  When an item is added to an order and the **ProductStockManager** confirms the requested stock is available, a new **ProductLineItem** is created with the corresponding purchase information.
 
 ## Orders
 An **Order** represents the current state of a user's cart. It contains the logic for adding items to a purchase, updating item count, and applying discounts.
