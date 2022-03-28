@@ -7,7 +7,7 @@ namespace OmegaBakery
     {
         static void Main(string[] args)
         {
-            Startup.startupApp();
+            Startup.StartupApp();
         }
     }
 }

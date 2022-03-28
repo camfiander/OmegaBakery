@@ -8,14 +8,14 @@ namespace OmegaBakery.Domain.Products
 {
     internal class OutsideProductFamily : ProductFamily
     {
-        private List<BakeryOutsideProduct> _products;
+        private List<OutsideProduct> _products;
         private string _name;
 
         public override List<IProduct> Products => _products.Cast<IProduct>().ToList();
 
         public override string Name => _name;
 
-        public OutsideProductFamily(string name, List<BakeryOutsideProduct> products)
+        public OutsideProductFamily(string name, List<OutsideProduct> products)
         {
             _name = name;
             _products = products;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain.Data.CSVMappers
 {
-    internal class BIHProductMap : ClassMap<BakeryInHouseProduct>
+    internal class BIHProductMap : ClassMap<InHouseProduct>
     {
         public BIHProductMap()
         {

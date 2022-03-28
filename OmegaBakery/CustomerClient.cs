@@ -40,12 +40,12 @@ namespace OmegaBakery
                     if (choiceNum >= 0 && famNo >= 0)
                     {
                         IProduct selectedProduct = productFamilies[famNo].Products[choiceNum];
-                        int productStock = ProductStockManager.getInstance().getStockCount(selectedProduct);
+                        int productStock = ProductStockManager.GetInstance().GetStockCount(selectedProduct);
                         Console.Write("How many would you like? (in stock: " + productStock + "): ");
                         choice = Console.ReadLine();
                         if (int.TryParse(choice, out choiceNum))
                         {
-                            if (ProductStockManager.getInstance().sellStock(selectedProduct, choiceNum))
+                            if (ProductStockManager.GetInstance().SellStock(selectedProduct, choiceNum))
                             {
                                 customerOrder.AddLineItem(new ProductLineItem(selectedProduct, choiceNum));
                                 Console.WriteLine($"You've added {choiceNum} {selectedProduct.Name}(s) to your cart.");
