@@ -63,5 +63,19 @@ namespace OmegaBakery.Domain.Data
                                                     csvConfig.Path + csvConfig.BOutsideFileName + ".csv");
             return products.ToList();
         }
+
+        public static Dictionary<int,int> GetStock()
+        {
+            var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
+            var stocks = _csvService.ReadCSVFile<ProductStockMap, ProductStockData>(
+                                                    csvConfig.Path + csvConfig.BInHouseFileName + "Stock.csv");
+            Dictionary<int, int> set = new Dictionary<int, int>();
+            foreach (var stock in stocks)
+            {
+                set.Add(stock.ProductId, stock.Count);
+            }
+            return set;
+        }
+
     }
 }
