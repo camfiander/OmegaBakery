@@ -42,11 +42,12 @@ namespace OmegaBakery.Domain.Order
             _items.Add(lineItem);
         }
 
-        public void UpdateCount(IProduct product, int newCount)
+        public bool UpdateCount(IProduct product, int newCount)
         {
-            if (product == null) return;
-            _items.Find(x => x.HasProduct(product))
-                .UpdateCount(product, newCount);
+            if (product == null) return false;
+            bool? result = _items.Find(x => x.HasProduct(product))
+                ?.UpdateCount(product, newCount);
+            return (result != null) ? result.Value : false;
         }
 
         public bool HasProduct(IProduct product)

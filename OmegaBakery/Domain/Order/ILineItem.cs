@@ -15,7 +15,7 @@ namespace OmegaBakery.Domain.Order
 
         public string Render();
 
-        public void UpdateCount(IProduct product, int count);
+        public bool UpdateCount(IProduct product, int count);
 
         public bool HasProduct(IProduct product);
 

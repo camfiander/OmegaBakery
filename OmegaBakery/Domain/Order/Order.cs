@@ -1,4 +1,5 @@
-﻿using OmegaBakery.Domain.Products;
+﻿using OmegaBakery.Domain.Discount;
+using OmegaBakery.Domain.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,12 @@ namespace OmegaBakery.Domain.Order
 
         private List<CompositeLineItem> _lineItems;
 
+        private List<IDiscount> _discounts;
+
         public Order()
         {
             _lineItems = new List<CompositeLineItem>();
+            _discounts = DiscountService.GetDiscounts();
         }
 
         public void AddLineItem(ILineItem lineItem)
@@ -33,16 +37,16 @@ namespace OmegaBakery.Domain.Order
         }
 
         
-        public void updateCount(IProduct product, int newCount)
+        public bool UpdateCount(IProduct product, int newCount)
         {
-            if (product == null) return;
-            _lineItems.Find(x => x.ProductType.Equals(product.ProductType))
+            return _lineItems.Find(x => x.ProductType.Equals(product.ProductType))
                 .UpdateCount(product,newCount);
             
         }
 
         public string Render()
         {
+            UpdateDiscounts();
             StringBuilder sb = new StringBuilder();
             double total = 0;
             foreach(ILineItem lineItem in LineItems)
@@ -52,6 +56,31 @@ namespace OmegaBakery.Domain.Order
             }
             sb.AppendLine("TOTAL: " + total.ToString("C"));
             return sb.ToString();
+        }
+
+        private void UpdateDiscounts()
+        {
+            List<CompositeLineItem> newCart = new List<CompositeLineItem>(); 
+            foreach(CompositeLineItem lineItem in _lineItems)
+            {
+                bool discounted = false;
+                foreach(IDiscount discount in _discounts)
+                {
+                    if (discount.isDiscounted(lineItem) && !(lineItem is DiscountedLineItem))
+                    {
+                        DiscountedLineItem discountedLineItem = new DiscountedLineItem(lineItem, discount);
+                        newCart.Add(discountedLineItem);
+                        discounted = true;
+                        break;
+                    }
+                }
+                if (!discounted)
+                {
+                    newCart.Add(lineItem);
+                }
+            }
+
+            _lineItems = newCart;
         }
         
     }

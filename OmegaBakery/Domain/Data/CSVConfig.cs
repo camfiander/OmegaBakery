@@ -12,21 +12,17 @@ namespace OmegaBakery.Domain.Data
         public string BInHouseFileName { get; set; }
         public string BOutsideFileName { get; set; }
 
-        public string ProductStockFileName { get; set; }
-
-        public CSVConfig(string path, string username, string password, string stock)
+        public CSVConfig(string path, string username, string password)
         {
             Path = path;
             BInHouseFileName = username;
             BOutsideFileName = password;
-            ProductStockFileName = stock;
         }
         public CSVConfig()
         {
             Path = String.Empty;
             BInHouseFileName = string.Empty;
             BOutsideFileName = string.Empty;
-            ProductStockFileName = string.Empty;
         }
     }
 }

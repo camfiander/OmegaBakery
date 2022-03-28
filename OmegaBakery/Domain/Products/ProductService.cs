@@ -30,5 +30,10 @@ namespace OmegaBakery.Domain.Products
                 new OutsideProductFamily("Packaged items",GetProducts("Packaged items").Cast<OutsideProduct>().ToList())
             };
         }
+
+        public static int GetStockForProduct(int productId)
+        {
+            return DataService.GetStock().TryGetValue(productId, out var result) ? result : 0;
+        }
     }
 }

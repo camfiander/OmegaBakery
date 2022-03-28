@@ -23,7 +23,7 @@ namespace OmegaBakery.Domain.Order
         public override string Render()
         {
             double discountAmount = _discount.getDiscountSubtotal(this, base.Subtotal);
-            if(discountAmount > 0)
+            if(discountAmount < 0)
             {
                 return base.Render() + $"{_discount.Name}\t{discountAmount.ToString("C")}";
             }

@@ -1,4 +1,5 @@
 ﻿using OmegaBakery.Domain.Products;
+using OmegaBakery.Domain.Stock;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,20 @@ namespace OmegaBakery.Domain.Order
             return $"{Product.Name} | {Count} | {Subtotal.ToString("C")}";
         }
 
-        public void UpdateCount(IProduct product, int count)
+        public bool UpdateCount(IProduct product, int count)
         {
+            if (count < 0) return false;
+            if(count > Count)
+            {
+                if (ProductStockManager.GetInstance().SellStock(product, count - Count)){
+                    count = Count;
+                    return true;
+                }
+                return false;
+            }
+            ProductStockManager.GetInstance().RestoreStock(product, Count - count);
             Count = count;
+            return true;
         }
 
         public bool HasProduct(IProduct product)
