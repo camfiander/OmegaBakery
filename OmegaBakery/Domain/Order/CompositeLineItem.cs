@@ -16,13 +16,12 @@ namespace OmegaBakery.Domain.Order
 
         public ProductType ProductType { get; }
 
-        public string Render()
+        public virtual string Render()
         {
             StringBuilder sb = new StringBuilder();
             foreach (var item in _items)
             {
-                sb.Append("\t");
-                sb.Append(item.Render());
+                sb.AppendLine(item.Render());
             }
             return sb.ToString();
         }
@@ -30,6 +29,7 @@ namespace OmegaBakery.Domain.Order
         public CompositeLineItem(ProductType productType)
         {
             ProductType = productType;
+            _items = new List<ILineItem>();
         }
 
         public void AddLineItem(ILineItem lineItem)
@@ -44,6 +44,7 @@ namespace OmegaBakery.Domain.Order
 
         public void UpdateCount(IProduct product, int newCount)
         {
+            if (product == null) return;
             _items.Find(x => x.HasProduct(product))
                 .UpdateCount(product, newCount);
         }

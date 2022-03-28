@@ -35,9 +35,23 @@ namespace OmegaBakery.Domain.Order
         
         public void updateCount(IProduct product, int newCount)
         {
+            if (product == null) return;
             _lineItems.Find(x => x.ProductType.Equals(product.ProductType))
                 .UpdateCount(product,newCount);
             
+        }
+
+        public string Render()
+        {
+            StringBuilder sb = new StringBuilder();
+            double total = 0;
+            foreach(ILineItem lineItem in LineItems)
+            {
+                total += lineItem.Subtotal;
+                sb.AppendLine(lineItem.Render());
+            }
+            sb.AppendLine("TOTAL: " + total.ToString("C"));
+            return sb.ToString();
         }
         
     }
