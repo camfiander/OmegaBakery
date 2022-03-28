@@ -6,40 +6,37 @@ using System.Threading.Tasks;
 
 namespace OmegaBakery.Domain.Products
 {
-    internal class BakeryOutsideProduct : IOutsideProduct
+    internal class InHouseProduct : IInHouseProduct
     {
         public int ProductId { get; set; }
-
         public string Name { get; set; }
-        public string Company { get; set; }
-
         public string Description { get; set; }
-
-        public ProductType ProductType { get; set; }
-
         public double BasePrice { get; set; }
+
+        public DateTime ExpiryDate { get; set; }
 
         public int? LocationId { get; set; }
 
         public DateTime DateAdded { get; set; }
+        public ProductType ProductType { get; set; }
 
-        public BakeryOutsideProduct(int productId, string name, string description, double basePrice, int locationId, string company, DateTime dateAdded)
+        public InHouseProduct(int productId, string name, string description, double basePrice, int locationId, DateTime expiryDate, DateTime dateAdded)
         {
             ProductId = productId;
             Name = name;
             Description = description;
             BasePrice = basePrice;
             LocationId = locationId;
-            Company = company;
+            ExpiryDate = expiryDate;
             DateAdded = dateAdded;
         }
 
-        public BakeryOutsideProduct()
+        public InHouseProduct() 
         {
             Name = String.Empty;
-            Company = String.Empty;
             Description = String.Empty;
         }
+
         public string Render()
         {
             return Name + " - " + Description + " - " + BasePrice.ToString("C");

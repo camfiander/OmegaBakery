@@ -13,7 +13,7 @@ namespace OmegaBakery.Domain.Data
 
         private static DataService _instance;
 
-        public static DataService getInstance()
+        public static DataService GetInstance()
         {
             if (_instance == null)
             {
@@ -48,18 +48,18 @@ namespace OmegaBakery.Domain.Data
             return null;
         }
 
-        public static List<BakeryInHouseProduct> GetInHouseProducts()
+        public static List<InHouseProduct> GetInHouseProducts()
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
-            var products = _csvService.ReadCSVFile<BIHProductMap, BakeryInHouseProduct>(
+            var products = _csvService.ReadCSVFile<BIHProductMap, InHouseProduct>(
                                                     csvConfig.Path + csvConfig.BInHouseFileName + ".csv");
             return products.ToList();
         }
 
-        public static List<BakeryOutsideProduct> GetOutsideProducts()
+        public static List<OutsideProduct> GetOutsideProducts()
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
-            var products = _csvService.ReadCSVFile<BOProductMap, BakeryOutsideProduct>(
+            var products = _csvService.ReadCSVFile<BOProductMap, OutsideProduct>(
                                                     csvConfig.Path + csvConfig.BOutsideFileName + ".csv");
             return products.ToList();
         }

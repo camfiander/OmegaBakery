@@ -12,7 +12,7 @@ namespace OmegaBakery.Domain.Products
     {
         public static IEnumerable<IProduct> GetProducts(string family)
         {
-            var dataService = DataService.getInstance(); 
+            var dataService = DataService.GetInstance(); 
             return dataService.GetDataForProduct(family);
             //return new List<IProduct>()
             //{
@@ -26,8 +26,8 @@ namespace OmegaBakery.Domain.Products
         {
             return new List<ProductFamily>
             {
-                new InHouseProductFamily("Baked goods",GetProducts("Baked goods").Cast<BakeryInHouseProduct>().ToList()),
-                new OutsideProductFamily("Packaged items",GetProducts("Packaged items").Cast<BakeryOutsideProduct>().ToList())
+                new InHouseProductFamily("Baked goods",GetProducts("Baked goods").Cast<InHouseProduct>().ToList()),
+                new OutsideProductFamily("Packaged items",GetProducts("Packaged items").Cast<OutsideProduct>().ToList())
             };
         }
     }

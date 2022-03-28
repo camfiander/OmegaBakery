@@ -38,12 +38,12 @@ namespace OmegaBakery
                     if (choiceNum >= 0 && choiceNum < productFamilies[famNo].Products.Count)
                     {
                         IProduct selectedProduct = productFamilies[famNo].Products[choiceNum];
-                        int productStock = ProductStockManager.getInstance().getStockCount(selectedProduct);
+                        int productStock = ProductStockManager.GetInstance().GetStockCount(selectedProduct);
                         Console.Write("How many would you like? (in stock: " + productStock + "): ");
                         choice = Console.ReadLine();
                         if (int.TryParse(choice, out choiceNum))
                         {
-                            if (ProductStockManager.getInstance().sellStock(selectedProduct, choiceNum))
+                            if (ProductStockManager.GetInstance().SellStock(selectedProduct, choiceNum))
                             {
                                 Console.WriteLine("you bought em");
                             }

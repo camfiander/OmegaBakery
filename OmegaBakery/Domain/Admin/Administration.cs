@@ -9,7 +9,7 @@ namespace OmegaBakery.Domain.Admin
 {
     internal class Administration
     {
-        public static void login()
+        public static void Login()
         {
             //Manage();
             CheckPoint1:
@@ -77,7 +77,7 @@ namespace OmegaBakery.Domain.Admin
                     }
                     goto CheckPoint1;
                 case 3:
-                    Startup.runStartScreen();
+                    Startup.RunStartScreen();
                     break;
                 default:
                     goto CheckPoint1;
