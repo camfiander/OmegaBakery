@@ -7,12 +7,14 @@ The application aims to provide basic functionalities like view items available,
 
 ## Products
 ![](img/Products.png)
+
 There are two types of products that are supported by the application: in-house products which are produced inside the store and outside products which are purchased from other manufacturers and sold in store.
 This necessitates the need for an **Abstract Factory pattern**, so that the app can be extended to more product lines apart from the Bakery.
 A product stock manager manages the available count of product stock during operation. The stock manager is implemented as a singleton since multiple objects deducing stock count need to be avoided.
 
 ## Discounts
 ![](img/IDiscount.png)
+
 Discounts represent a reduction in cost on specific purchases based on product types and quantities. A discount will only apply to ILineItem objects that meet pass a **Predicate** passed into the discount on instantiation. The **Strategy** design pattern is used for the discount subtotal calculation allowing us to use several types of discounts:
 - **FlatDiscountStrategy**: Removes a flat dollar amount from the subtotal
 - **PercentDiscountStrategy**: Removes a percentage of the subtotal
@@ -30,6 +32,7 @@ Discounts require flexibility for how they are applied to line items. For exampl
 
 ## Line Items
 ![](img/ILineItem.png)
+
 A line item represents a set of purchases contained in an **Order**.   
 
 Line Items use the **composite** design pattern, which allows us to apply discounts flexibly to a single line item or group of line items.
