@@ -68,7 +68,7 @@ namespace OmegaBakery.Domain.Data
         {
             var csvConfig = AppService.InitOptions<CSVConfig>("CSV FileName");
             var stocks = _csvService.ReadCSVFile<ProductStockMap, ProductStockData>(
-                                                    csvConfig.Path + csvConfig.BInHouseFileName + "Stock.csv");
+                                                    Path.Combine(AppService.GetBasePath(), csvConfig.Path) + csvConfig.BInHouseFileName + "Stock.csv");
             Dictionary<int, int> set = new Dictionary<int, int>();
             foreach (var stock in stocks)
             {
