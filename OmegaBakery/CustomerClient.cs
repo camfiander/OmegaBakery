@@ -1,4 +1,5 @@
-﻿using OmegaBakery.Domain.Order;
+﻿using OmegaBakery.Domain.Discount;
+using OmegaBakery.Domain.Order;
 using OmegaBakery.Domain.Products;
 using OmegaBakery.Domain.Stock;
 using System;
@@ -14,7 +15,12 @@ namespace OmegaBakery
         public static void run()
         {
             Order customerOrder = new Order();
-            PurchaseItems:
+        PurchaseItems:
+            Console.WriteLine("Current Discounts:");
+            foreach(IDiscount discount in DiscountService.GetDiscounts())
+            {
+                Console.WriteLine(discount.Name);
+            }
             Console.WriteLine("Please select an item to purchase");
 
             List<ProductFamily> productFamilies = ProductService.GetProductFamilies();
@@ -87,7 +93,7 @@ namespace OmegaBakery
                                     choice = Console.ReadLine();
                                     if (int.TryParse(choice, out choiceNum))
                                     {
-                                        if(choiceNum > 0)
+                                        if(choiceNum >= 0)
                                         {
                                             customerOrder.UpdateCount(productToUpdate, choiceNum);
                                         }
